@@ -8,6 +8,28 @@ The requested project title is retained verbatim. **This patch suppresses one
 identified forced-update dialog; general advertising removal is not implemented
 or verified.** “Adds” in the title must not be read as a verified ad-blocking claim.
 
+## Download and install
+
+[**Download signed Android APK**](https://github.com/emransm877/moviebox-android/releases/latest/download/MovieBox-Android-0.1.0.apk)
+
+On an Android 10+ ARM64 phone, download the APK, open it and allow installation
+from your browser or file manager when Android asks. No compiler or PC is needed.
+The launcher name is **MovieBox**. This is an independent sideloaded build,
+not the official app or a Google Play release. A matching `.sha256` file is
+provided in Releases.
+
+The patch targets ARM64 Android 10+; other architectures and older Android
+versions are unsupported even if the original manifest permits installation.
+Newer OS versions, 16 KB page-size devices and other manufacturers have not all
+been tested. The renamed APK is signature-verified but still needs an additional
+on-device check. Do not treat a download link as universal device certification.
+
+For an update, keep the existing app installed: Android preserves data only when
+its package and signing certificate match. An official MovieBox installation uses
+a different package, so this copy installs separately. A differently signed copy
+of the same patched package cannot be updated with this APK without resolving the
+signing identity; do not uninstall it merely to bypass that error.
+
 ## What it changes
 
 | Behavior | Status |
@@ -91,10 +113,10 @@ The external output directory receives:
 - `SHA256SUMS.txt` — the APK checksum.
 - `build-logs/` — compiler and verification logs.
 
-Build outputs, source APKs, and keystores are required to remain outside the
-publishable source tree. Derived APK distribution requires a separate review of
-the upstream application's rights and terms; the source-project license does not
-grant rights to that application.
+Build outputs, source APKs, and keystores remain outside the publishable source
+tree. The signed convenience APK is attached separately to Releases. The MIT
+license covers the independently authored patch/tooling, not the upstream
+application or third-party components in that APK.
 
 ## Install or update
 

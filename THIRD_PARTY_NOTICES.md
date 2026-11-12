@@ -3,6 +3,8 @@
 The repository contains independently authored patch source and build tooling.
 It does not include the original MovieBox APK, protected DEX payloads, original
 native libraries, application assets, SDKs, compilers, or private signing keys.
+The separately downloadable release APK is a derived application and contains
+upstream components; it is not covered in full by this source project's MIT license.
 
 The supported source APK already contains third-party components and prior
 modifications. This project does not claim authorship of them, review their full
