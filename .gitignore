@@ -1,0 +1,34 @@
+# Proprietary or derived application artifacts
+*.apk
+*.apks
+*.aab
+*.dex
+*.so
+*.class
+*.idsig
+build/
+dist/
+artifacts/
+build-logs/
+
+# Private signing material and local secrets
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.key
+.env
+.env.*
+local.properties
+local-config.json
+secrets/
+
+# Local caches
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store

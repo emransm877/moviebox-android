@@ -1,0 +1,18 @@
+{
+  "title": "MovieBox (No Force Update & Adds)",
+  "slug": "moviebox-android",
+  "patch_version": "0.1.0",
+  "launcher_label": "MovieBox",
+  "source_package": "com.community.mbox.in.geobypass",
+  "output_package": "com.community.mbox.in.popupfree",
+  "supported_source_sha256": "600d34e28e424278ee18e4ea2c486b15b17c97e58625c9ca2410e4ef7e4c38e3",
+  "supported_upstream_version": "4.0.03.0930.03",
+  "supported_upstream_version_code": 52120132,
+  "java_provider": "local.popupguard.GuardProvider",
+  "native_abi": "arm64-v8a",
+  "scope": {
+    "identified_force_update_dialog": "suppressed",
+    "clone_startup_fault": "narrow ARM64 workaround",
+    "advertising_removal": "not implemented or verified by this patch"
+  }
+}
