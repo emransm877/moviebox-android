@@ -1,7 +1,7 @@
 {
   "title": "MovieBox (No Force Update & Adds)",
   "slug": "moviebox-android",
-  "patch_version": "0.1.0",
+  "patch_version": "0.2.0",
   "launcher_label": "MovieBox",
   "source_package": "com.community.mbox.in.geobypass",
   "output_package": "com.community.mbox.in.popupfree",

@@ -155,7 +155,7 @@ def main(argv=None):
             '-nostdlib', '-fno-stack-protector', '-Wl,-z,max-page-size=16384', '-Wl,-z,noexecstack',
             '-Wl,-soname,libpopupguard.so', '-o', native, ROOT / 'patch/native/startup-guard.c'])
         run('java-compile', [javac, '-source', '8', '-target', '8', '-classpath', android_jar,
-            '-d', classes, ROOT / 'patch/java/local/popupguard/GuardProvider.java'])
+            '-d', classes, *sorted((ROOT / 'patch/java').rglob('*.java'))])
         run('dex-compile', [java, '-Xmx512m', '-cp', build_tools / 'lib/d8.jar', 'com.android.tools.r8.D8',
             '--lib', android_jar, '--min-api', '29', '--output', dex, *sorted(classes.rglob('*.class'))])
         unsigned, aligned = work / 'unsigned.apk', work / 'aligned.apk'

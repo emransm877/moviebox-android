@@ -82,6 +82,11 @@ public final class GuardProvider extends ContentProvider {
         }
         Log.i("PopupGuard", "Guard initialized in " + getContext().getPackageName());
         handler.post(scan);
+        try {
+            PatchUpdateNotice.install(getContext());
+        } catch (Throwable error) {
+            Log.w("PopupGuard", "Optional patch notice unavailable", error);
+        }
         return true;
     }
     @Override public Cursor query(Uri uri, String[] projection, String selection, String[] args, String sort) { return null; }

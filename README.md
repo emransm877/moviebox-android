@@ -10,7 +10,7 @@ or verified.** “Adds” in the title must not be read as a verified ad-blockin
 
 ## Download and install
 
-[**Download signed Android APK**](https://github.com/emransm877/moviebox-android/releases/latest/download/MovieBox-Android-0.1.0.apk)
+[**Download signed Android APK**](https://github.com/emransm877/moviebox-android/releases/latest/download/MovieBox-Android-0.2.0.apk)
 
 On an Android 10+ ARM64 phone, download the APK, open it and allow installation
 from your browser or file manager when Android asks. No compiler or PC is needed.
@@ -40,11 +40,31 @@ signing identity; do not uninstall it merely to bypass that error.
 | ARM64 clone startup fault | Narrow workaround for the observed `SIGBUS` at address `0xa01` on a non-main thread |
 | Advertising SDKs, banners, video ads | No general removal performed by this patch |
 | Login, memberships, service access | No changes made by this patch |
+| Patch update notice (0.2.0) | Optional daily GitHub release check; Download, Later, Skip, and a disable switch |
 
 The dialog guard and native helper previously worked during an observed playback
 session and were confirmed by the user. The renamed release build is verified
 statically; it needs an additional on-device check after installation. A future
 server change, translated prompt, or different APK may require a new investigation.
+
+The 0.2.0 notice implementation has source and compile validation, not on-device
+validation. Its release check runs in a background thread at most once per day
+while the app is used. It contacts only the public GitHub releases API for
+`emransm877/moviebox-android`; it sends no MovieBox credentials or phone identifier.
+It accepts only a newer stable patch version and an exact HTTPS APK asset URL in
+that repository. It never downloads or installs an APK itself.
+
+The notice is dismissible with Back, outside touch, **Later** (24 hours), or
+**Skip this version**. **Download** opens the validated GitHub asset in a browser.
+Uncheck **Check for patch updates daily** in the notice to disable further checks.
+That preference is local to the patched app; there is no integration into the
+original app's settings screen, and this build does not add a re-enable screen.
+
+Prompts are allowed only on the reviewed main browsing activity, after it settles
+and has focus. Player/detail/splash/unknown activities, other started activities,
+picture-in-picture, multiwindow, active music, and visible video surfaces defer
+the notice. These conservative checks need runtime validation on the actual
+protected app; uncertainty defers rather than showing a prompt.
 
 ## Supported input
 
@@ -108,7 +128,7 @@ Never replace the signing key for an existing patched installation.
 
 The external output directory receives:
 
-- `MovieBox-Android-0.1.0.apk` — the signed derived APK.
+- `MovieBox-Android-0.2.0.apk` — the signed derived APK.
 - `build-report.json` — package, launcher label, preserved metadata, certificate digest, checksums, and verification results.
 - `SHA256SUMS.txt` — the APK checksum.
 - `build-logs/` — compiler and verification logs.
@@ -124,7 +144,7 @@ Review `build-report.json`, then connect an authorized Android device with USB
 debugging enabled:
 
 ```powershell
-adb -d install -r --no-incremental "D:\Builds\MovieBoxAndroid\MovieBox-Android-0.1.0.apk"
+adb -d install -r --no-incremental "D:\Builds\MovieBoxAndroid\MovieBox-Android-0.2.0.apk"
 adb -d shell am start -n com.community.mbox.in.popupfree/com.transsion.subroom.activity.SplashActivity
 ```
 
