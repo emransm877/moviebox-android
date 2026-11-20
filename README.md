@@ -1,178 +1,96 @@
 # MovieBox (No Force Update & Adds)
 
-An independent, patch-only Android project for a specific MovieBox APK. The built
-app is named **MovieBox** in the launcher and uses package
-`com.community.mbox.in.popupfree`.
+**An independent Android patch for one known forced-update dialog.**
 
-The requested project title is retained verbatim. **This patch suppresses one
-identified forced-update dialog; general advertising removal is not implemented
-or verified.** “Adds” in the title must not be read as a verified ad-blocking claim.
+[![Patch source checks](https://github.com/emransm877/moviebox-android/actions/workflows/check.yml/badge.svg)](https://github.com/emransm877/moviebox-android/actions/workflows/check.yml)
+[![Published release](https://img.shields.io/github/v/release/emransm877/moviebox-android)](https://github.com/emransm877/moviebox-android/releases/latest)
+
+[Project website & download insights](https://emransm877.github.io/moviebox-desktop/) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Report a bug](https://github.com/emransm877/moviebox-android/issues/new/choose)
+
+The repository title is retained from the original project name. **General
+advertising removal is not implemented or verified.** “Adds” must not be read as
+a verified ad-blocking claim. Memberships, login and service access are unchanged.
+
+This is patch source and build tooling for a specific reviewed APK, not a
+general-purpose patcher or an official MovieBox release. The installed launcher
+name is **MovieBox**, with separate package `com.community.mbox.in.popupfree`.
 
 ## Download and install
 
-[**Download signed Android APK**](https://github.com/emransm877/moviebox-android/releases/latest/download/MovieBox-Android-0.2.0.apk)
+[**Download the published Android APK — 0.2.0**](https://github.com/emransm877/moviebox-android/releases/download/v0.2.0/MovieBox-Android-0.2.0.apk)
 
-On an Android 10+ ARM64 phone, download the APK, open it and allow installation
-from your browser or file manager when Android asks. No compiler or PC is needed.
-The launcher name is **MovieBox**. This is an independent sideloaded build,
-not the official app or a Google Play release. A matching `.sha256` file is
-provided in Releases.
+1. Use an **ARM64 Android 10+** phone and download the APK from the link above.
+2. Compare its SHA-256 with the file on the [release page](https://github.com/emransm877/moviebox-android/releases/tag/v0.2.0).
+3. Open the APK. If Android asks, allow this installation from the browser or file
+   manager you used. Do not disable Play Protect or other device security protections.
+4. Open **MovieBox**. No PC, compiler or root access is required to use this APK.
 
-The patch targets ARM64 Android 10+; other architectures and older Android
-versions are unsupported even if the original manifest permits installation.
-Newer OS versions, 16 KB page-size devices and other manufacturers have not all
-been tested. The renamed APK is signature-verified but still needs an additional
-on-device check. Do not treat a download link as universal device certification.
+For an update, keep the working app installed. Android preserves its data only
+when the package and signing certificate match. **Do not uninstall just to bypass
+a signature conflict.** This patched copy installs separately from the reviewed
+source package. See [installation troubleshooting](docs/TROUBLESHOOTING.md).
 
-For an update, keep the existing app installed: Android preserves data only when
-its package and signing certificate match. An official MovieBox installation uses
-a different package, so this copy installs separately. A differently signed copy
-of the same patched package cannot be updated with this APK without resolving the
-signing identity; do not uninstall it merely to bypass that error.
+## Actual Android interface
 
-## What it changes
+<img src="docs/images/android-home-installed.png" alt="USB capture of the installed patched MovieBox Android home screen" width="280">
 
-| Behavior | Status |
-|---|---|
-| “New Version Released” forced-update dialog | Matches the known English title and upgrade message, makes that dialog invisible, and lets input reach the underlying app |
-| Separate package | Keeps the patched copy separate from the source package |
-| Launcher label | Exactly `MovieBox` |
-| ARM64 clone startup fault | Narrow workaround for the observed `SIGBUS` at address `0xa01` on a non-main thread |
-| Advertising SDKs, banners, video ads | No general removal performed by this patch |
-| Login, memberships, service access | No changes made by this patch |
-| Patch update notice (0.2.0) | Optional daily GitHub release check; Download, Later, Skip, and a disable switch |
+*Real USB capture of the maintainer's existing patched installation. Its APK hash
+differs from published 0.2.0, so this screenshot is not certification of that
+release. The upstream manifest version is preserved and does not identify a patch
+release. Catalogue artwork remains third-party material.*
 
-The dialog guard and native helper previously worked during an observed playback
-session and were confirmed by the user. The renamed release build is verified
-statically; it needs an additional on-device check after installation. A future
-server change, translated prompt, or different APK may require a new investigation.
+## What the patch does—and does not do
 
-The 0.2.0 notice implementation has source and compile validation, not on-device
-validation. Its release check runs in a background thread at most once per day
-while the app is used. It contacts only the public GitHub releases API for
-`emransm877/moviebox-android`; it sends no MovieBox credentials or phone identifier.
-It accepts only a newer stable patch version and an exact HTTPS APK asset URL in
-that repository. It never downloads or installs an APK itself.
+| Behavior | Scope |
+| --- | --- |
+| Known forced-update dialog | Matches the reviewed English title/message, hides that dialog and lets input reach the underlying app. |
+| Separate installation | Uses the isolated patched package; launcher label is MovieBox. |
+| Observed ARM64 clone startup fault | Narrow workaround for the observed non-main-thread SIGBUS at address `0xa01`. |
+| Patch release reminders | Optional daily GitHub check with Download, Later, Skip and a disable switch. No automatic APK download or installation. |
+| General advertising removal | Not implemented or verified. |
+| Memberships and service restrictions | Unchanged. |
 
-The notice is dismissible with Back, outside touch, **Later** (24 hours), or
-**Skip this version**. **Download** opens the validated GitHub asset in a browser.
-Uncheck **Check for patch updates daily** in the notice to disable further checks.
-That preference is local to the patched app; there is no integration into the
-original app's settings screen, and this build does not add a re-enable screen.
+Optional notices are deferred during playback and uncertain activity states.
+Disabling checks is local to this patch; the current implementation has no separate
+re-enable screen. Read the [notice behavior and validation limits](docs/UPDATE_NOTICE.md).
 
-Prompts are allowed only on the reviewed main browsing activity, after it settles
-and has focus. Player/detail/splash/unknown activities, other started activities,
-picture-in-picture, multiwindow, active music, and visible video surfaces defer
-the notice. These conservative checks need runtime validation on the actual
-protected app; uncertainty defers rather than showing a prompt.
+## Compatibility and validation limits
 
-## Supported input
+- The patch supports ARM64 Android 10/API 29 or newer, even though the upstream
+  manifest permits a lower minimum. Other ABIs and older Android versions are unsupported.
+- Newer OS versions, 16 KB page-size devices and manufacturers are not all tested.
+- The known dialog guard and native helper previously worked during an observed
+  playback session. The released 0.2.0 notice needs additional exact-APK device validation.
+- CI checks patch source using synthetic fixtures; it cannot certify every runtime
+  behavior of the external protected application.
+- A different APK, changed server prompt or translated dialog needs a new investigation.
 
-Only the reviewed upstream artifact is accepted. Obtain it separately; it is not
-distributed in this repository.
+## Build and contribute
 
-| Field | Required value |
-|---|---|
-| Source package | `com.community.mbox.in.geobypass` |
-| Source version | `4.0.03.0930.03` (`52120132`) |
-| Source APK SHA-256 | `600d34e28e424278ee18e4ea2c486b15b17c97e58625c9ca2410e4ef7e4c38e3` |
-| Patched package | `com.community.mbox.in.popupfree` |
-| Runtime supported by the patch | ARM64 Android 10 / API 29 or newer |
-
-The input's existing SDK declarations and permission set are preserved; its
-package-scoped receiver permission is renamed to match the isolated package. The patch's
-API-29 runtime requirement is stricter than the source APK's declared minimum.
-This is not a general-purpose APK patcher.
-
-## Requirements
-
-- Python 3.10 or newer; the tooling uses only the standard library.
-- A full JDK 17, including `javac`.
-- Android SDK Platform `android-35` and Build Tools `35.0.0` (`d8`, `zipalign`, `apksigner`).
-- Zig `0.13.0`, used to compile the small ARM64 helper without installing an NDK.
-- The supported source APK and a signing keystore, both stored outside this repository.
-
-No SDK, compiler, original APK, signing key, or third-party runtime binary is
-included. Tool versions are pinned in the documented build; byte-identical output
-across different toolchains is not guaranteed.
-
-## Build
-
-From this repository on Windows PowerShell:
-
-```powershell
-python tools/build.py `
-  --apk "D:\Private\moviebox-original.apk" `
-  --android-sdk "$env:ANDROID_HOME" `
-  --java-home "$env:JAVA_HOME" `
-  --zig "D:\Tools\zig\zig.exe" `
-  --keystore "D:\Private\moviebox-signing.keystore" `
-  --alias "YOUR_KEY_ALIAS" `
-  --upgrade-from "D:\Private\previous-patched-copy.apk" `
-  --output-dir "D:\Builds\MovieBoxAndroid"
-```
-
-`--upgrade-from` is recommended when replacing an existing patched installation.
-The builder checks that the package, signing-certificate digest, and version code
-permit that in-place upgrade. Omit it only for a new installation signed with your
-own key. A new key cannot update someone else's signed copy while retaining its data.
-
-The builder prompts for passwords without echoing them. For noninteractive builds,
-supply `MOVIEBOX_KEYSTORE_PASSWORD` and `MOVIEBOX_KEY_PASSWORD` through your local
-environment or secret manager. Do not put their values in source, command-line
-arguments, shell history, CI configuration, or the repository.
-
-Keep the private keystore backed up outside Git. For a new installation you can
-create your own key with `keytool -genkeypair`; let it prompt for its password.
-Never replace the signing key for an existing patched installation.
-
-The external output directory receives:
-
-- `MovieBox-Android-0.2.0.apk` — the signed derived APK.
-- `build-report.json` — package, launcher label, preserved metadata, certificate digest, checksums, and verification results.
-- `SHA256SUMS.txt` — the APK checksum.
-- `build-logs/` — compiler and verification logs.
-
-Build outputs, source APKs, and keystores remain outside the publishable source
-tree. The signed convenience APK is attached separately to Releases. The MIT
-license covers the independently authored patch/tooling, not the upstream
-application or third-party components in that APK.
-
-## Install or update
-
-Review `build-report.json`, then connect an authorized Android device with USB
-debugging enabled:
-
-```powershell
-adb -d install -r --no-incremental "D:\Builds\MovieBoxAndroid\MovieBox-Android-0.2.0.apk"
-adb -d shell am start -n com.community.mbox.in.popupfree/com.transsion.subroom.activity.SplashActivity
-```
-
-The launcher should show **MovieBox**. The `-r` update preserves app data when the
-package and signing identity match. Do not uninstall a working copy to resolve a
-signature mismatch: rebuild with its original key instead.
-
-After installation, check opening the app, browsing, starting a video, returning
-from the background, and the update-dialog behavior. Static verification alone
-does not establish successful runtime playback on every device.
-
-## Verify the source tooling
+The original APK, protected payloads, third-party runtimes and signing keys are
+not committed here. Obtain the exact supported source separately. Use the pinned
+source hash and toolchain in [the build guide](docs/BUILD.md); never generate a new
+signing key to replace an existing installation's identity.
 
 ```powershell
 python -m unittest discover -s tests -v
+python tools/check_release.py
 ```
 
-CI tests use a small synthetic manifest, not a proprietary application. An optional
-local integration test also checks the real manifest when `MOVIEBOX_SOURCE_APK`
-points to your external supported source APK.
+The optional real-manifest test requires the external `MOVIEBOX_SOURCE_APK`
+fixture. See [the release checklist](docs/RELEASE_PROCESS.md), [findings](docs/REVERSE_ENGINEERING.md),
+[CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
-## Implementation and provenance
+Bug reports should include the downloaded patch release, phone model, Android
+version and repeatable steps. Keep APKs, device serials, passwords, accounts,
+signing keys and signed media URLs out of public issues.
 
-See [the findings](docs/REVERSE_ENGINEERING.md) for the evidence boundary and the
-reason the original protected DEX header's nonstandard SHA-1 bytes are preserved.
-See [third-party notices](THIRD_PARTY_NOTICES.md) for distribution boundaries.
+## Related project and licensing
 
-This project is not affiliated with or endorsed by MovieBox, its developers, or
-its service operators. MovieBox names and application assets belong to their
-respective owners. The MIT license applies only to the patch source and tooling
-authored for this project, not to the original or derived application.
+[MovieBox Desktop for Windows](https://github.com/emransm877/moviebox-desktop)
+provides a native desktop interface; it is a separate project, not an Android emulator.
+
+Maintained by [Emran Hossain](https://github.com/emransm877). Not affiliated with or
+endorsed by MovieBox or Google. MIT applies to independently authored patch source
+and tooling, not to the complete derived APK. Upstream code, assets and names
+retain their respective owners' rights. See [third-party notices](THIRD_PARTY_NOTICES.md).

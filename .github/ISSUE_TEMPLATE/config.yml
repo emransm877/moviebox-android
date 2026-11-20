@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation and troubleshooting
+    url: https://github.com/emransm877/moviebox-android/blob/main/docs/TROUBLESHOOTING.md
+    about: Review supported devices, signature conflicts and patch scope.
+  - name: Security reporting
+    url: https://github.com/emransm877/moviebox-android/blob/main/SECURITY.md
+    about: Keep credentials, APKs and private logs out of public issues.

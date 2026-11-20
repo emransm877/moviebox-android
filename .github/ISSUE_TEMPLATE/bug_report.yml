@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a problem with the Android patch
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: 'Do not attach APKs, keys, passwords, device serials, account data or complete logs. General advertising removal is not implemented or verified.'
+  - type: input
+    id: release
+    attributes:
+      label: Downloaded patch release
+      placeholder: 'Example: v0.2.0; upstream About/version text alone does not identify the patch'
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Phone model and Android version
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: Installation type
+      options: [Fresh install, In-place update, Other or unsure]
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Steps, expected behavior and actual behavior
+      description: For a reappearing update prompt, include its exact text and language. Explain whether playback or another activity was open.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Safe evidence
+      description: A cropped app screenshot or exact error message, without personal information.
