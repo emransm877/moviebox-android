@@ -5,7 +5,7 @@
 [![Patch source checks](https://github.com/emransm877/moviebox-android/actions/workflows/check.yml/badge.svg)](https://github.com/emransm877/moviebox-android/actions/workflows/check.yml)
 [![Published release](https://img.shields.io/github/v/release/emransm877/moviebox-android)](https://github.com/emransm877/moviebox-android/releases/latest)
 
-[Project website & download insights](https://emransm877.github.io/moviebox-desktop/) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Report a bug](https://github.com/emransm877/moviebox-android/issues/new/choose)
+[Project website & download insights](https://emransm877.github.io/moviebox-projects/) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Report a bug](https://github.com/emransm877/moviebox-android/issues/new/choose)
 
 The repository title is retained from the original project name. **General
 advertising removal is not implemented or verified.** “Adds” must not be read as
@@ -34,10 +34,7 @@ source package. See [installation troubleshooting](docs/TROUBLESHOOTING.md).
 
 <img src="docs/images/android-home-installed.png" alt="USB capture of the installed patched MovieBox Android home screen" width="280">
 
-*Real USB capture of the maintainer's existing patched installation. Its APK hash
-differs from published 0.2.0, so this screenshot is not certification of that
-release. The upstream manifest version is preserved and does not identify a patch
-release. Catalogue artwork remains third-party material.*
+*Real USB capture of the published 0.2.0 APK after a signature-matched in-place update on the maintainer's phone. Launch, browsing and observed playback are bounded checks, not universal certification. The upstream manifest version is preserved and does not identify the patch release. Catalogue artwork remains third-party material.*
 
 ## What the patch does—and does not do
 
