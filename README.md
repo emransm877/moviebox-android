@@ -91,3 +91,11 @@ Maintained by [Emran Hossain](https://github.com/emransm877). Not affiliated wit
 endorsed by MovieBox or Google. MIT applies to independently authored patch source
 and tooling, not to the complete derived APK. Upstream code, assets and names
 retain their respective owners' rights. See [third-party notices](THIRD_PARTY_NOTICES.md).
+
+
+## Other MovieBox platforms
+
+[Windows desktop app](https://github.com/emransm877/moviebox-desktop) · [Samsung Tizen TV app](https://github.com/emransm877/moviebox-tizen) · [Android TV / Google TV app](https://github.com/emransm877/moviebox-android-tv)
+
+Choose the package for your operating system. These are separate independent
+projects; an APK, Windows EXE and Samsung WGT are not interchangeable.
