@@ -39,9 +39,10 @@ test of this protected APK; no device was connected for source validation.
   the app runs. No alarms, service, wake lock, or runtime permission are added.
 - No MovieBox account data, device ID, or signing secret is sent to GitHub.
 
-The latest public release observed during source review was `v0.1.0`, with the
-expected APK asset naming. Version 0.2.0 correctly ignores that older release.
-A future-update flow is covered by policy fixtures, not a fabricated public release.
+The current published patch release is `v0.2.0`, with the expected APK asset name.
+The installed 0.2.0 patch ignores its own release and only offers a strictly newer
+eligible release. Future-update behavior is covered by policy fixtures; no fake
+release was published for testing.
 
 ## Choices and private preferences
 
@@ -69,3 +70,10 @@ verification, 16 KiB ZIP alignment, Java compilation and 15 source tests passed.
 Its original manifest, protected payload and native helper were preserved.
 No phone was connected for this revision, so runtime UI, installation and
 protected-app compatibility remain separate checks before claiming device support.
+
+## 23 November 2026 screen check
+
+A fresh USB home-screen capture was taken from the installed APK whose SHA256
+matches the published 0.2.0 release. This updates the earlier no-phone-connected
+source-review context without claiming that every playback/lifecycle or future
+notice choice has now been exercised. See [capture identity and scope](DEVICE_CHECK_2026-11-23.md).

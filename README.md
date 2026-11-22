@@ -34,7 +34,10 @@ source package. See [installation troubleshooting](docs/TROUBLESHOOTING.md).
 
 <img src="docs/images/android-home-installed.png" alt="USB capture of the installed patched MovieBox Android home screen" width="280">
 
-*Real USB capture of the published 0.2.0 APK after a signature-matched in-place update on the maintainer's phone. Launch, browsing and observed playback are bounded checks, not universal certification. The upstream manifest version is preserved and does not identify the patch release. Catalogue artwork remains third-party material.*
+*Fresh USB capture on 23 November 2026. The installed APK matches the published
+0.2.0 release bytes. This screen check does not certify every playback or
+update-notice case. The upstream manifest version is preserved; catalogue artwork
+belongs to its respective owners. [Capture identity and scope](docs/DEVICE_CHECK_2026-11-23.md).*
 
 ## What the patch does—and does not do
 
@@ -82,10 +85,14 @@ Bug reports should include the downloaded patch release, phone model, Android
 version and repeatable steps. Keep APKs, device serials, passwords, accounts,
 signing keys and signed media URLs out of public issues.
 
-## Related project and licensing
+## Separate native Android phone app
 
-[MovieBox Desktop for Windows](https://github.com/emransm877/moviebox-desktop)
-provides a native desktop interface; it is a separate project, not an Android emulator.
+[MovieBox Android Native](https://github.com/emransm877/moviebox-android-native)
+is an independently authored phone client. It uses a different APK and private
+library; installing it does not update or replace this patched copy. Its features,
+validation and downloads are documented in its own repository.
+
+## Licensing
 
 Maintained by [Emran Hossain](https://github.com/emransm877). Not affiliated with or
 endorsed by MovieBox or Google. MIT applies to independently authored patch source
@@ -95,7 +102,12 @@ retain their respective owners' rights. See [third-party notices](THIRD_PARTY_NO
 
 ## Other MovieBox platforms
 
-[Windows desktop app](https://github.com/emransm877/moviebox-desktop) · [Samsung Tizen TV app](https://github.com/emransm877/moviebox-tizen) · [Android TV / Google TV app](https://github.com/emransm877/moviebox-android-tv)
+| Device | Project and downloads |
+| --- | --- |
+| Android phone - native client | [Separate native phone project](https://github.com/emransm877/moviebox-android-native) |
+| Windows PC | [Desktop app](https://github.com/emransm877/moviebox-desktop) - [latest release](https://github.com/emransm877/moviebox-desktop/releases/latest) |
+| Samsung Tizen TV | [Samsung TV app](https://github.com/emransm877/moviebox-tizen) - [latest release](https://github.com/emransm877/moviebox-tizen/releases/latest) |
+| Android TV / Google TV | [Android TV app](https://github.com/emransm877/moviebox-android-tv) - [0.2.0 release](https://github.com/emransm877/moviebox-android-tv/releases/tag/v0.2.0) |
 
 Choose the package for your operating system. These are separate independent
 projects; an APK, Windows EXE and Samsung WGT are not interchangeable.
